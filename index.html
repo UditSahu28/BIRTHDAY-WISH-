@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta SWATI="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* CSS Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* A festive gradient background */
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            background-color: #ffecd2;
+            background-image: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden; /* Prevents scrollbars from confetti */
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 400px;
+            position: relative;
+            z-index: 10;
+            /* Subtle entry animation */
+            animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #ff6b6b;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #ff4757;
+        }
+
+        button {
+            background-color: #ff4757;
+            color: white;
+            border: black colour;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+        }
+
+        button:hover {
+            background-color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        /* Keyframes for the card popping in */
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Adjustments for very small screens */
+        @media (max-width: 350px) {
+            h1 { font-size: 2rem; }
+            .card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Happy Birthday!</h1>
+        <p>Happy Birthday to most favorite person of my life I don't know where to start but I have a lot to say to and you Today is your birthday is the best day for you to relax and enjoy the best things in your life,
+This day I Wanna thank you for being in my life Thanks for your love and support I'm always waited for this day because I wanted to make you feel special and try to make you more happiest you're the best I've in my life
+Happy birthday
+to my best friend
+the one I can tell my soul too. Who
+can relate to me like no one other
+Who I can laugh with no extent
+promise
+to always stick by your side
+through good and bed I'm here<span class="highlight">[SWATI]</span>!</p>
+        <p>May all your dreams come true this year.</p>
+        
+        <button id="confettiBtn">Celebrate! 🎉</button>
+    </div>
+
+    <script>
+        // JavaScript for Confetti Animation
+        
+        // Function to fire confetti
+        function fireConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                // Since particles fall down, start a bit higher than random
+                confetti(Object.assign({}, defaults, { particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+                }));
+                confetti(Object.assign({}, defaults, { particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+                }));
+            }, 250);
+        }
+
+        // Fire confetti automatically when the page loads
+        window.onload = function() {
+            setTimeout(fireConfetti, 300); // slight delay for better effect
+        };
+
+        // Fire confetti again when the button is clicked
+        document.getElementById('confettiBtn').addEventListener('click', function() {
+            fireConfetti();
+            
+            // Optional: small button bump effect
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 100);
+        });
+    </script>
+
+</body>
+</html>
